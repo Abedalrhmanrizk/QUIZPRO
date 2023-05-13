@@ -12,6 +12,14 @@ const result = document.querySelector(".result-area")
 const questionResult = document.querySelector(
   ".question-result"
 )
+
+let quizHeader = document.querySelector(
+  ".quiz-header .time"
+)
+// Set Options
+let currentIndex = 0
+let countdownInterval
+
 const yourAnswer = document.querySelector(".your-answer")
 const correctAnswer = document.querySelector(
   ".correct-answer"
@@ -41,6 +49,7 @@ startBtn.addEventListener("click", () => {
 })
 
 function loadQuiz() {
+  countdown(5, num)
   deselectAnswers()
   currentQuestion = quizData[currentQuiz]
   questionEl.textContent = currentQuestion.question
@@ -122,3 +131,23 @@ moon.addEventListener("click", () => {
   moon.classList.toggle("dark")
   document.body.classList.toggle("bdark")
 })
+
+function countdown(duration, count) {
+  if (currentIndex < count) {
+    let minutes, seconds
+    countdownInterval = setInterval(function () {
+      minutes = parseInt(duration / 60)
+      seconds = parseInt(duration % 60)
+
+      minutes = minutes < 10 ? `0${minutes}` : minutes
+      seconds = seconds < 10 ? `0${seconds}` : seconds
+
+      quizHeader.innerHTML = `${minutes}:${seconds}`
+
+      if (--duration < 0) {
+        clearInterval(countdownInterval)
+        submitBtn.click()
+      }
+    }, 1000)
+  }
+}

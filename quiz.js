@@ -265,8 +265,4 @@ export const quizData = [
   },
 ]
 
-// function shuffle(array) {
-// }
-// shuffle(quizData);
-
 quizData.sort(() => Math.random() - 0.5)
