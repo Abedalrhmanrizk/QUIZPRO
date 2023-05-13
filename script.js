@@ -34,7 +34,10 @@ startBtn.addEventListener("click", () => {
     numQuiz.classList.add("hidden")
     quizContainer.classList.remove("hidden")
     loadQuiz()
-  } else alertText.textContent = `⚠️ Enter a valid number!`
+  } else {
+    alertText.textContent = ` Enter a valid number ❗︎❗︎❗︎`
+    alertText.style.color = "#ef233c"
+  }
 })
 
 function loadQuiz() {
@@ -113,3 +116,9 @@ function showResult() {
 
 console.log(Math.random() - 0.5)
 console.log(0.1 + 0.2)
+
+const moon = document.querySelector(".moon")
+moon.addEventListener("click", () => {
+  moon.classList.toggle("dark")
+  document.body.classList.toggle("bdark")
+})
