@@ -12,14 +12,6 @@ const result = document.querySelector(".result-area")
 const questionResult = document.querySelector(
   ".question-result"
 )
-
-let quizHeader = document.querySelector(
-  ".quiz-header .time"
-)
-// Set Options
-let currentIndex = 0
-let countdownInterval
-
 const yourAnswer = document.querySelector(".your-answer")
 const correctAnswer = document.querySelector(
   ".correct-answer"
@@ -31,6 +23,11 @@ const quizContainer = document.querySelector(
 )
 const yourMark = document.querySelector(".your-mark")
 const alertText = document.querySelector(".alert")
+
+let quizHeader = document.querySelector("#time")
+
+let currentIndex = 0
+let countdownInterval
 let num
 let currentQuiz = 0
 let score = 0
@@ -49,8 +46,8 @@ startBtn.addEventListener("click", () => {
 })
 
 function loadQuiz() {
-  countdown(5, num)
   deselectAnswers()
+  countdown(90, num)
   currentQuestion = quizData[currentQuiz]
   questionEl.textContent = currentQuestion.question
   a_text.textContent = currentQuestion.a
@@ -82,6 +79,7 @@ let x = []
 submitBtn.addEventListener("click", loadQ)
 
 function loadQ() {
+  clearInterval(countdownInterval)
   const answer = getSelected()
   q.push(questionEl.textContent)
   c.push(quizData[currentQuiz].correct)
@@ -142,7 +140,7 @@ function countdown(duration, count) {
       minutes = minutes < 10 ? `0${minutes}` : minutes
       seconds = seconds < 10 ? `0${seconds}` : seconds
 
-      quizHeader.innerHTML = `${minutes}:${seconds}`
+      quizHeader.textContent = `${minutes}:${seconds}`
 
       if (--duration < 0) {
         clearInterval(countdownInterval)
